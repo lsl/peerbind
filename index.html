@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>A Peer Bind Example</title>
+	<script src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	<script src="jQuery.peerbind.js"></script>
+	<script src="https://raw.github.com/kvz/phpjs/master/functions/strings/get_html_translation_table.js"></script>
+	<script src="https://raw.github.com/kvz/phpjs/master/functions/strings/htmlentities.js"></script>
+	<script type="text/javascript">
+		var nicks = {}; // nasty global to store nicknames..
+	
+		$(document).ready(function(){
+			
+			$.fn.peerbind.defaults = {
+				//Leaving as is allows for localhost / Local LAN IP to be used allowing empty string is in the todo
+				'endpointprefixes': [""], 
+				
+				//Set to your url, IP, or localhost (for local testing), moving port to config on the todo 
+				'endpoint': "localhost:8080", 
+				
+				//string, geo, ip, url
+				'type': "string", 
+				
+				//Required for type: string only
+				'regstring': "PeerBindChatExample", 
+				
+				//Required only for geo
+				'coords': { 
+					lat: 0,
+					long: 0
+				},
+				'coordsSet': false, //to remove - unused
+				
+				//Polling interval in milliseconds
+				'pollinterval': 500, 
+				'pollmax': 31000,
+				
+				//Callback function to be called after registration with the server.
+				'regcallback': null 
+			};
+			
+
+			//This only works for people already connected 
+			//Will have change this to be a post back on a custom "arrived" trigger I think.
+			$("#nickname").peerbind("change",{
+				peer: function(e){
+					//yay for globals?
+					nicks[e.srcPeer] = e.peerData;
+				},
+				local: function(e){
+					addChat("<b>Nickname set</b>", e.peerData);
+					
+				}
+			});
+
+			//Bind a change event for the nickname input			
+			$("#message").peerbind("change", {
+			    peer:  function(e) {
+						addChat(e.srcPeer, e.peerData);
+				},
+			    local: function(e) {
+						addChat("<b>You</b>",e.peerData);
+						$("#message").val("");
+				}
+			});
+		});
+		
+		function addChat(user,msg) {
+			
+			//If no nick is stored, just display the users uid
+			var nick = user;
+	 		if (nicks[user]) {
+				nick = nicks[user];
+			}
+			
+			//htmlentities is part of the php.js
+			//used to swap out any <script>/html tags for &lt;script&gt; etc etc.. 
+			//..not sure how legit this is at securing things.
+		  	$(".chat").append("<br>" + nick + ": " + htmlentities(msg));
+		}
+	</script>  
+	<style>
+	.chat {
+		height: 90%;
+		min-height:30px;
+	}
+	
+	.new_message {
+		height:10%;
+	}
+	</style>
+  </head>
+  <body onload="" id="stage" class="theme">
+	
+	<fieldset>
+		<legend>Nickname</legend>
+		<div class="settings">
+			<input type="textbox" id="nickname"><button id="">set</button><br/>
+		</div> 
+	</fieldset>
+	<fieldset>
+		<legend>Messages</legend>	
+    	<div class="chat"></div>
+		<div class="new_message">
+			<input type="textbox" id="message"><button id="send">send</button>
+		</div>
+	</fieldset>
+
+
+    
+  </body>
+</html>
