@@ -2,6 +2,8 @@ Setup Instructions:
 
 Client Side Setup:
 
+Include jQuery.peerbind.js into your webpage.
+
 <script src="http://code.jquery.com/jquery-1.4.4.js"></script>
 <script src="jQuery.peerbind.js"></script>
 
