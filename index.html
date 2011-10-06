@@ -13,7 +13,7 @@
 	
 		$(document).ready(function(){
 			
-			$.fn.peerbind.defaults = {
+			var options = {
 				//Leaving as is allows for localhost / Local LAN IP to be used allowing empty string is in the todo
 				'endpointprefixes': [""], 
 				
@@ -44,7 +44,7 @@
 
 			//This only works for people already connected 
 			//Will have change this to be a post back on a custom "arrived" trigger I think.
-			$("#nickname").peerbind("change",{
+			$("#nickname").peerbind(options,"change",{
 				peer: function(e){
 					//yay for globals?
 					nicks[e.srcPeer] = e.peerData;
@@ -56,7 +56,7 @@
 			});
 
 			//Bind a change event for the nickname input			
-			$("#message").peerbind("change", {
+			$("#message").peerbind(options,"change", {
 			    peer:  function(e) {
 						addChat(e.srcPeer, e.peerData);
 				},
