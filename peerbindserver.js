@@ -695,21 +695,9 @@ function requestHandler(req, res) {
 	}
 }
 
-//Boot the server on a few ports..
-try {
-	http.createServer(requestHandler).listen(7337);
-} catch (e){
-	console.log("Exception: ");
-	console.log(e);
-}
+//Boot the server on port 8080
 try {
 	http.createServer(requestHandler).listen(8080);
-} catch (e){
-	console.log("Exception: ");
-	console.log(e);
-}
-try {
-	http.createServer(requestHandler).listen(80);
 } catch (e){
 	console.log("Exception: ");
 	console.log(e);
