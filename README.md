@@ -45,4 +45,4 @@ This server will serve files relative from the calling directory. You can specif
     node peerbindserver.js /var/www/peerbind/
     node peerbindserver.js ~/peerbind
 
-The index.html file included in this repository has some example code to set up a simple chat app that can run over your a localhost browser and node.js server.
+The index.html file included in this repository has some example code to set up a simple chat app that can run over a localhost node.js server and your browser.
