@@ -1,29 +1,48 @@
-Setup Instructions:
+Peerbind
+========
 
-Client Side Setup:
+Peerbind is an event binding library that allows JavaScript-initiated interactions between website visitors
 
-Include jQuery.peerbind.js into your webpage.
+* Website: [http://peerbind.com](http://peerbind.com)
+* Code: [https://github.com/lsl/peerbind](https://github.com/lsl/peerbind)
 
-<script src="http://code.jquery.com/jquery-1.4.4.js"></script>
-<script src="jQuery.peerbind.js"></script>
+Client side setup
+-----------------
 
-... Yea it was that easy ..
+Include jquery.js and jQuery.peerbind.js into your webpage:
 
-Setting up an endpoint:
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="jQuery.peerbind.js"></script>
 
-Install node.js (nodejs.org)
-	Mac brew:
-		brew install node
+Bind an event to a DOM element:
 
-Run	
-cd ~/peerbind
-node peerbindserver.js
+    <script>
+      $(document).ready(function() {
+        function addChat(msg) {
+          $("#chats").append("<br>"+msg);
+        }
+        
+        $("input").peerbind("change", {
+          peer:  function(e) { addChat(e.srcPeer + ": " + e.peerData);},
+          local: function(e) { addChat("You: " + e.peerData); $(this).val("");}
+        });
+      });
+    </script>
+    Type a message: <input type="text"> 
+    <div id="chats"></div>
 
-Note: this server will serve files relative from the calling directory.
-You can specify the public directory with the first argument after the server.
+That's it! Have a look at the [documentation](http://peerbind.com/#configuration) for other parts of the API.
 
-node peerbindserver.js /var/www/peerbind/
-node peerbindserver.js ~/peerbind
+Running your own Peerbind server
+--------------------------------
 
+You'll need to have [node.js](http://nodejs.org/) installed to run the Peerbind server. For installation instructions see [the node.js wiki](https://github.com/joyent/node/wiki/Installation). Once you've installed node, you can run the Peerbind server with the following command:
 
-The index.html file included has some example code to set up a simple chat app to run over your localhost.
+    node peerbindserver.js
+
+This server will serve files relative from the calling directory. You can specify the public directory with the first argument after the server:
+
+    node peerbindserver.js /var/www/peerbind/
+    node peerbindserver.js ~/peerbind
+
+The index.html file included in this repository has some example code to set up a simple chat app that can run over your a localhost browser and node.js server.
