@@ -35,6 +35,9 @@
 		if (type && jQuery.isPlainObject(type)) {
 			//Yup set them and return.
 			$.extend(true, $.fn.peerbind.defaults, type);
+			if (type.endpointprefixes && type.endpointprefixes instanceof Array) {
+				$.fn.peerbind.defaults.endpointprefixes = type.endpointprefixes;
+			}
 
 			//Move the parameter stack along...
 			type = data;
