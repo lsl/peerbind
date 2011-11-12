@@ -48,7 +48,7 @@
 					nicks[e.srcPeer] = e.peerData;
 				},
 				local: function(e){
-					addChat("<b>Nickname set</b>", e.peerData);
+					addChat("Nickname set", e.peerData);
 					
 				}
 			});
@@ -59,7 +59,7 @@
 						addChat(e.srcPeer, e.peerData);
 				},
 			    local: function(e) {
-						addChat("<b>You</b>",e.peerData);
+						addChat("You",e.peerData);
 						$("#message").val("");
 				}
 			});
@@ -72,25 +72,34 @@
 	 		if (nicks[user]) {
 				nick = nicks[user];
 			}
-			
-			$(".chat").append("<br>" + nick + ": " + msg);
+			$(".chat").append( $("<div class='message'/>").text( nick + ": " + msg ));
 		}
 	</script>  
 	<style>
-	.chat {
-		height: 90%;
-		min-height:30px;
-	}
+		body {
+			font-family: verdana, arial, sans;
+			font-size: 14px;
+			background-color: #BFC9FF;
+		}
+		
+		.chat {
+			height: 90%;
+			min-height:30px;
+		}
 	
-	.new_message {
-		height:10%;
-	}
+		.new_message {
+			height:10%;
+		}
+		
+		.message {
+			font-size: 0.8em;	
+		}
 	</style>
   </head>
-  <body onload="" id="stage" class="theme">
-	
+  <body>
+	<h1>Peerbind Chat Example</h1>
 	<fieldset>
-		<legend>Nickname</legend>
+		<legend>Nickname (optional)</legend>
 		<div class="settings">
 			<input type="textbox" id="nickname"><button id="">set</button><br/>
 		</div> 
