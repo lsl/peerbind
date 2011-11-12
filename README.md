@@ -1,10 +1,15 @@
 Peerbind
 ========
 
-Peerbind is an event binding library that allows JavaScript-initiated interactions between website visitors
+Peerbind is an event binding library that allows JavaScript-initiated interactions between website visitors.
+
+Originally Authored by Matt Amacker [https://twitter.com/#!/peerbind](@peerbind) an Engineer for A9.com. This is an adaption to help people get up and running with their own endpoints or Peerbind in general.
 
 * Website: [http://peerbind.com](http://peerbind.com)
+* Original Client: [http://js.peerbind.com/jQuery.peerbind.js](http://js.peerbind.com/jQuery.peerbind.js)
+* Original Server: [http://peerbind.com/peerbindserver.js](http://peerbind.com/peerbindserver.js)
 * Code: [https://github.com/lsl/peerbind](https://github.com/lsl/peerbind)
+* ASL: [http://aws.amazon.com/asl/](Amazon Software Licence)
 
 Client side setup
 -----------------
@@ -33,7 +38,7 @@ Bind an event to a DOM element:
 
 That's it! Have a look at the [documentation](http://peerbind.com/#configuration) for other parts of the API.
 
-Running your own Peerbind server
+Running your own Peerbind server (endpoint)
 --------------------------------
 
 You'll need to have [node.js](http://nodejs.org/) installed to run the Peerbind server. For installation instructions see [the node.js wiki](https://github.com/joyent/node/wiki/Installation). Once you've installed node, you can run the Peerbind server with the following command:
