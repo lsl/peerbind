@@ -9,7 +9,7 @@ Originally Authored by Matt Amacker [https://twitter.com/#!/peerbind](@peerbind)
 * Original Client: [http://js.peerbind.com/jQuery.peerbind.js](http://js.peerbind.com/jQuery.peerbind.js)
 * Original Server: [http://peerbind.com/peerbindserver.js](http://peerbind.com/peerbindserver.js)
 * Code: [https://github.com/lsl/peerbind](https://github.com/lsl/peerbind)
-* ASL: [http://aws.amazon.com/asl/](Amazon Software Licence)
+* ASL: [Amazon Software Licence](http://aws.amazon.com/asl/)
 
 Client side setup
 -----------------
